@@ -9,7 +9,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-let bridgeData = [ // creating the name, cityState, span, location of the bridges
+let bridgeNames = [] // empty array
+let bridgeSpans = [] // empty array
+
+for (let bridgeArray = 0; bridgeNames.length; bridgeArray++) {
+    bridgeNames.push(bridgeData[bridgeArray].name)
+    bridgeSpans.push(bridgeData[bridgeArray].span)
+}
+
+// does this need commented out below? If so, nothing pops up on my map
+let bridgeData = [
     {
         "name": 'Verrazao-Narrow Bridge',
         cityState: 'New York, NY',
@@ -40,8 +49,8 @@ let bridgeData = [ // creating the name, cityState, span, location of the bridge
     span: 853.44,
     location: [47.2690, -122.5517] // array of lat, long
     }
-
 ]
+
 bridgeData.forEach(function(bridgeLocation) { // this will add all of the bridges to each map by using an array of objects
     let bridgeText = `<b>${bridgeLocation.name}</b><br><b>${bridgeLocation.cityState}</b><b>${bridgeLocation.span}</b>`
     L.marker(bridgeLocation.location).bindPopup(bridgeText).addTo(map)
@@ -49,7 +58,7 @@ bridgeData.forEach(function(bridgeLocation) { // this will add all of the bridge
 
 
 let bridgeIcon = L.icon({ // this will add the bridge icon to the maps
-    iconUrl: 'bridge.png',
+    iconUrl: 'bdg.png',
 
     iconSize:     [38, 95], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow

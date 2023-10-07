@@ -1,6 +1,7 @@
 let canvas = document.querySelector('#bridge-chart') // this will create the bridge chart
 let context = canvas.getContext('2d')
 
+
 let bridgeChart = new bridgeChart(context, {
     type: 'bar',
     data: {
