@@ -17,7 +17,7 @@ for (let bridgeArray = 0; bridgeNames.length; bridgeArray++) {
     bridgeSpans.push(bridgeData[bridgeArray].span)
 }
 
-// does this need commented out below? If so, nothing pops up on my map
+
 let bridgeData = [
     {
         "name": 'Verrazao-Narrow Bridge',
@@ -51,44 +51,41 @@ let bridgeData = [
     }
 ]
 
-bridgeData.forEach(function(bridgeLocation) { // this will add all of the bridges to each map by using an array of objects
-    let bridgeText = `<b>${bridgeLocation.name}</b><br><b>${bridgeLocation.cityState}</b><b>${bridgeLocation.span}</b>`
-    L.marker(bridgeLocation.location).bindPopup(bridgeText).addTo(map)
-})
-
-
 let bridgeIcon = L.icon({ // this will add the bridge icon to the maps
     iconUrl: 'bdg.png',
 
-    iconSize:     [38, 95], // size of the icon
-    //shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    //shadowAnchor: [4, 62],  // the same for the shadow
+    iconSize:     [35, 20], // size of the icon
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-    //L.marker([47.2690, -122.5517], {icon: bridgeIcon}).addTo(map)
+    
 });
 
 
-// let canvas = document.querySelector('#bridge-map')
-// let context = canvas.getContext('2d')
+bridgeData.forEach(function(bridgeLocation) { // this will add all of the bridges to each map by using an array of objects
+    let bridgeText = `<b>${bridgeLocation.name}</b><br><b>${bridgeLocation.cityState}</b><b>${bridgeLocation.span}</b>`
+    L.marker(bridgeLocation.location, {icon: bridgeIcon}).bindPopup(bridgeText).addTo(map)
+})
 
-// let bridgeChart = new bridgeChart(context, {
-//     type: 'bar',
-//     data: {
-//         bridges: ['Verrazao-Narrow Bridge', 'Golden Gate Bridge', 'Mackinac Bridge', 'George Washington Bridge', 'Tacoma Narrows Bridge'],
-//         datasets: [ {
-//             label: 'Bridge in Length',
-//             data: [1298.4, 1280.2, 1158.0, 1067.0, 853.44],
-//             backgroundColor: ['blue', 'yellow', 'red', 'orange', 'green']
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             yAxes: [ {
-//                 ticks: {
-//                     beginsAtZero: true
-//                 }
-//             }]
-//         }
-//     }
-// })
+
+let canvas = document.querySelector('#bridge-chart')
+let context = canvas.getContext('2d')
+
+let bridgeChart = new Chart(context, {
+    type: 'bar',
+    data: {
+        labels: ['Verrazao-Narrow Bridge', 'Golden Gate Bridge', 'Mackinac Bridge', 'George Washington Bridge', 'Tacoma Narrows Bridge'],
+        datasets: [ {
+            label: 'Bridge in Length',
+            data: [1298.4, 1280.2, 1158.0, 1067.0, 853.4],
+            backgroundColor: ['blue', 'yellow', 'red', 'orange', 'green']
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [ {
+                ticks: {
+                    beginsAtZero: true
+                }
+            }]
+        }
+    }
+})
